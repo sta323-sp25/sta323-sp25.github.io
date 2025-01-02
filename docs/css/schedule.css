@@ -65,7 +65,7 @@
 }
 
 .schedule-tbl .schedule-title {
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 }
   
 .schedule-tbl .schedule-readings ul {
