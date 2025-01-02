@@ -3,6 +3,10 @@ dateFormat: 'Mon, Jan 2'
 schedule:
 
 - week: 0
+  day: 3
+  lecture: <i>No class (Monday Schedule)</i>
+
+- week: 0
   day: 5
   lecture: "Welcome & Syllabus"
   slides: Lec01
