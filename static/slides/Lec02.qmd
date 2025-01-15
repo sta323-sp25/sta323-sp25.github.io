@@ -825,7 +825,7 @@ $^*$over `x` means the returned value will have the length of `x` regardless of 
 x = c("A","B","C")
 y = c("A")
 ```
-:
+:::
 
 
 
