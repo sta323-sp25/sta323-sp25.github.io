@@ -457,7 +457,7 @@ typeof(NA_complex_)
 This should make sense as `NA` values can appear along over values in atomic vectors.
 :::
 
-## NA stickiness"
+## NA stickiness
 
 Because `NA`s represent missing values it makes sense that most calculations using them will also be missing.
 
@@ -589,14 +589,17 @@ is.nan(NA)
   
 First remember that `Inf`, `-Inf`, and `NaN` are doubles, however their coercion behavior is not the same as other doubles
 
+
+::: {.small}
 ```{r}
 as.integer(Inf)
 as.integer(NaN)
 ```
+:::
 
 . . .
 
-:::: {.columns}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 as.logical(Inf)
@@ -726,15 +729,17 @@ sin(c(1, 2, 3))
 
 If the lengths of the vector do not match, then the shorter vector has its values recycled to match the length of the longer vector.
 
+::: {.small}
 ```{r}
 x = c(TRUE, FALSE, TRUE)
 y = c(TRUE)
 z = c(FALSE, TRUE)
 ```
+:::
 
 . . .
 
-:::: {.columns}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 x | y
@@ -815,14 +820,16 @@ $^*$over `x` means the returned value will have the length of `x` regardless of 
 
 ## Comparisons
 
+::: {.small}
 ```{r}
 x = c("A","B","C")
 y = c("A")
 ```
+:
 
 
 
-:::: {.columns}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 x == y
@@ -842,7 +849,7 @@ y %in% x
 
 Type coercion also applies for comparison opperators which can result in *interesting* behavior
 
-:::: {.columns}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 TRUE == "TRUE"
