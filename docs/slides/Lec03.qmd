@@ -171,13 +171,13 @@ countdown::countdown(5)
 
 R has a spectrum of output that can be provided to users,
 
-* Printed output - i.e. `cat()`, `print()`
+* Printed output - `cat()`, `print()`
 
-* Diagnostic messages - i.e. `message()`
+* Diagnostic messages - `message()`
 
-* Warnings - i.e. `warning()`
+* Warnings - `warning()`
 
-* Errors - i.e. `stop()`, `stopifnot()`
+* Errors - `stop()`, `stopifnot()`
 
 Each of these provides outputs while also providing signals which can be interacted with programmatically (e.g. catching errors or treating warnings as errors).
 
