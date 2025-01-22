@@ -90,7 +90,7 @@ Because of this, lists become a natural way of representing tree-like structures
 
 By default a generic vector will be coerced to part of a list (as the list is more general) if combined
 
-:::: {.columns .medium}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 str( c(1, list(4, list(6, 7))) )
@@ -104,14 +104,11 @@ str( list(1, list(4, list(6, 7))) )
 :::
 ::::
 
-
-
-
 . . .
 
 We can coerce a list into an atomic vector using `unlist()` - type coercion rules then apply to determine the final vector type.
 
-::: {.medium}
+::: {.small}
 ```{r}
 unlist(list(1:3, list(4:5, 6)))
 unlist( list(1, list(2, list(3, "Hello"))) )
@@ -124,7 +121,7 @@ unlist( list(1, list(2, list(3, "Hello"))) )
 
 Because of their more complex structure we often want to name the elements of a list (we can also do this with atomic vectors). 
 
-This can make accessing list elements more straight forward (and avoids the use of magic numbers)
+This can make accessing list elements more straight forward and avoids the use of magic numbers - more on this next lecture.
 
 ::: medium
 ```{r}
@@ -175,9 +172,8 @@ a b
 :::
 ::::
 
-. . . 
 
-::: medium
+::: aside
 Vector (atomic or generic) names can be any valid R character vector values (as this is how they are stored) but there are a number of circumstances where we use them like a variable name (e.g. `mtcars$mpg`), and so it is a good idea to avoid using names that violate the object naming rules to avoid having to use backticks all the time (e.g. ``x$`knock knock` ``).
 :::
 
@@ -268,7 +264,7 @@ Note - If you're familiar with SQL, its `NULL` is more like R's `NA`
 
 In this special case the longer vector will have its length coerced to 0.
 
-:::: {.columns .medium}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 integer() + 1
@@ -287,7 +283,7 @@ character() > "M"
 
 As a `NULL` values always have length 0, this rule will apply (note the types)
 
-:::: {.columns .medium}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 NULL + 1
@@ -308,6 +304,8 @@ log(NULL)
 
 Given the previous issue, comparisons and conditionals with `NULL`s can be problematic.
 
+
+::: {.medium}
 ```{r}
 x = NULL
 ```
@@ -317,23 +315,27 @@ x = NULL
 if (x > 0)
   print("Hello")
 ```
+:::
 
 . . .
 
+::: {.medium}
 ```{r}
 #| error: True
 if (!is.null(x) & (x > 0))
   print("Hello")
 ```
+:::
 
 . . .
 
+::: {.medium}
 ```{r}
 #| error: True
 if (!is.null(x) && (x > 0))
   print("Hello")
 ```
-
+:::
 ::: {.aside}
 The last example works due to short circuit evaluation which occurs with `&&` and `||` but not `&` or `|`.
 :::
@@ -344,11 +346,11 @@ The last example works due to short circuit evaluation which occurs with `&&` an
 
 ## Attributes
 
-Attributes are metadata that can be attached to objects in R. Some are special ( e.g. `class`, `comment`, `dim`, `dimnames`, `names`, ...) as they change the behavior of the object(s).
+Attributes are metadata that can be attached to objects in R. Some are special ( e.g. `class`, `comment`, `dim`, `dimnames`, `names`, ...) because they change the behavior of the object(s).
 
 . . .
 
-Attributes are implemented as a *named list* that is attached to an object. They can be interacted with via the `attr()` and `attributes()` functions.
+Attributes are implemented as a **named list** that is attached to the object. They can be interacted with via the `attr()` and `attributes()` functions.
 
 ```{r}
 (x = c(L=1,M=2,N=3))
@@ -372,9 +374,9 @@ attr(x, "something")
 
 ## Assigning attributes
 
-The most commonly used / important attributes will usually have helper functions for getting and setting the attribute,
+The most commonly used / important attributes will usually have helper functions for getting and setting,
 
-:::: {.columns}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 x
@@ -397,7 +399,7 @@ names(x)
 
 ## Helpers functions vs attr
 
-:::: {.columns}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 names(x) = 1:3
@@ -416,11 +418,13 @@ attributes(x)
 
 . . .
 
+::: {.small}
 ```{r}
 attr(x, "names") = 1:3
 x
 attributes(x)
 ```
+:::
 
 
 ## Factors
@@ -447,7 +451,7 @@ mode(x)
 ```
 :::
 
-::: {.column width='50%'}
+::: {.column width='50%' .fragment}
 ```{r}
 class(x)
 ```
@@ -460,21 +464,25 @@ class(x)
 
 A factor is just an integer vector with two attributes: `class` and `levels`.
 
+::: {.medium}
 ```{r}
 x
 str(attributes(x))
 ```
+:::
 
 . . .
 
 We can build our own factor from scratch using `attr()`,
 
+::: {.medium}
 ```{r}
 y = c(3L, 1L, 2L, 1L, 1L)
 attr(y, "levels") = c("Cloudy", "Rainy", "Sunny")
 attr(y, "class") = "factor"
 y
 ```
+:::
 
 ## Building objects
 
@@ -496,6 +504,7 @@ is.factor(y)
 
 Knowing factors are stored as integers help explain some of their more interesting behaviors:
 
+::: {.medium}
 ```{r}
 #| error: True
 x+1
@@ -504,6 +513,7 @@ as.integer(x)
 as.character(x)
 as.logical(x)
 ```
+:::
 
 
 # S3 Object System
@@ -574,7 +584,7 @@ print.default( factor(x) )
 
 ## What's up with print?
 
-::: {.medium}
+::: {.small}
 ```{r}
 print
 ```
@@ -582,7 +592,7 @@ print
 
 . . .
 
-::: {.medium}
+::: {.small}
 ```{r}
 print.default
 ```
@@ -666,9 +676,11 @@ print.factor
 
 If instead we have a class and want to know what specialized functions exist for that class, then we can again use the `methods` function with the `class` argument.
 
+::: {.small}
 ```{r}
 methods(class="factor")
 ```
+:::
 
 ## Adding methods
 
@@ -811,15 +823,16 @@ shuffle( factor(letters[1:5]) )
 
 ## Exercise 2 - classes, modes, and types {.scrollable}
 
-:::: {.columns .medium}
-::: {.column width='50%'}
+:::: {.columns .small}
+::: {.column width='60%'}
 ```{webr}
 #| autorun: false
+#| max-lines: 15
 report = function(x) {
   UseMethod("report")
 }
 report.default = function(x) {
-  "This class does not have a method defined."
+  paste0("Class ", class(x)," does not have a method defined.")
 }
 report.integer = function(x) {
  "I'm an integer!"
@@ -831,20 +844,25 @@ report.numeric = function(x) {
   "I'm a numeric!"
 }
 
+#rm(report.integer)
+#rm(report.double)
+#rm(report.numeric)
+
 report(1)
 report(1L)
+report("1")
 ```
 :::
-::: {.column width='50%'}
-On the right we have defined an S3 method called `report`, it is designed to return a message about the type/mode/class of an object passed to it.
+::: {.column width='40%'}
+On the left we have defined an S3 method called `report`, it is designed to return a message about the type/mode/class of an object passed to it.
 
 * Try running the `report` function with different input types, what happens? 
 
-* Now comment out the code for `report.integer` and try rerunning the code, what has changed? 
+* Now uncomment out the code on line 17 and try rerunning the code, what has changed? 
 
 * What does this tell us about S3, types, modes, and classes?
 
-* What if we also comment out `report.double`?
+* What if we also uncomment the code on line 18?
 :::
 ::::
 
