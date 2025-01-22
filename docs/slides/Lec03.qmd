@@ -2,7 +2,7 @@
 title: "Error checking, functions,<br/>and loops"
 subtitle: "Lecture 03"
 author: "Dr. Colin Rundel"
-footer: "Sta 323 - Spring 2024"
+footer: "Sta 323 - Spring 2025"
 format:
   live-revealjs:
     theme: slides.scss

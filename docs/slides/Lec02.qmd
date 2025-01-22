@@ -2,7 +2,7 @@
 title: "Logic and types in R"
 subtitle: "Lecture 01"
 author: "Dr. Colin Rundel"
-footer: "Sta 323 - Spring 2024"
+footer: "Sta 323 - Spring 2025"
 format:
   live-revealjs:
     theme: slides.scss
