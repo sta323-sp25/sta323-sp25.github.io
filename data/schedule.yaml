@@ -51,7 +51,11 @@ schedule:
     link: https://docs.python.org/3/tutorial/errors.html
   
 - week: 2
-  day: 3
+  day: 5
+  lecture: "<i>No class - snow</i>"
+
+- week: 2
+  day: 5
   lecture: "Lists, Attributes, & S3"
   slides: Lec04
   screencast: 
@@ -62,8 +66,8 @@ schedule:
   - text: Lists, Sets and Dicts
     link: https://docs.python.org/3/tutorial/datastructures.html
 
-- week: 2
-  day: 5
+- week: 3
+  day: 3
   lecture: "Matrices, data frames, & subsetting"
   slides: Lec05
   screencast: 
@@ -79,7 +83,7 @@ schedule:
     link: https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing
 
 - week: 3
-  day: 3
+  day: 5
   lecture: "Tidy data & dplyr"
   slides: Lec06
   screencast: 
@@ -99,8 +103,8 @@ schedule:
   - text: Group By
     link: https://pandas.pydata.org/docs/user_guide/groupby.html
     
-- week: 3
-  day: 5
+- week: 4
+  day: 3
   lecture: "tidyr"
   slides: Lec07
   screencast: 
@@ -114,7 +118,7 @@ schedule:
     link: https://pandas.pydata.org/docs/user_guide/reshaping.
 
 - week: 4
-  day: 3
+  day: 5
   lecture: "Functional programming & purrr"
   slides: Lec08
   screencast: 
@@ -127,8 +131,8 @@ schedule:
     link: https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf
   suppmat: 
 
-- week: 4
-  day: 5
+- week: 5
+  day: 3
   lecture: "ggplot2"
   slides: Lec09
   screencast: 
@@ -146,15 +150,15 @@ schedule:
     link: https://plotnine.readthedocs.io/en/stable/
 
 - week: 5
-  day: 3
+  day: 5
   lecture: "Visualization Design"
   slides: Lec10
   screencast: 
   readings:
   suppmat:
 
-- week: 5
-  day: 5
+- week: 6
+  day: 3
   lecture: "Text processing & Regular expressions"
   slides: Lec11
   screencast: 
@@ -172,7 +176,7 @@ schedule:
     link: https://docs.python.org/3/library/re.html
     
 - week: 6
-  day: 3
+  day: 5
   lecture: "Web scraping"
   slides: Lec12
   screencast: 
@@ -183,8 +187,8 @@ schedule:
   - text: BeautifulSoup
     link: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
     
-- week: 6
-  day: 5
+- week: 7
+  day: 3
   lecture: "Web APIs"
   slides: Lec13
   screencast: 
@@ -198,7 +202,7 @@ schedule:
     link: https://requests.readthedocs.io/en/latest/
 
 - week: 7
-  day: 3
+  day: 5
   lecture: "Building APIs with R (plumber)"
   slides: Lec14
   screencast:
@@ -208,8 +212,8 @@ schedule:
   - text: plumber webinar
     link: https://posit.co/resources/videos/expanding-r-horizons-integrating-r-with-plumber-apis/
 
-- week: 7
-  day: 5
+- week: 8
+  day: 3
   lecture: "filesystems, Dennys & LQ scraping"
   screencast: 
   slides: Lec15
@@ -221,7 +225,7 @@ schedule:
   suppmat: 
 
 - week: 8
-  day: 3
+  day: 5
   lecture: "make"
   slides: Lec16
   screencast: 
@@ -233,15 +237,7 @@ schedule:
   suppmat: 
 
 
-- week: 8
-  day: 5
-  lecture: "targets"
-  slides: Lec16
-  screencast: 
-  readings:
-  - text: targets manual
-    link: https://books.ropensci.org/targets/
-  suppmat:
+
 
 - week: 9
   day: 2
@@ -255,11 +251,19 @@ schedule:
   day: 5
   lecture: "<i>No class</i> - Spring recess"
 
-
+- week: 10
+  day: 3
+  lecture: "targets"
+  slides: Lec16
+  screencast: 
+  readings:
+  - text: targets manual
+    link: https://books.ropensci.org/targets/
+  suppmat:
 
 
 - week: 10
-  day: 3
+  day: 5
   lecture: "Databases & dplyr"
   slides: Lec17
   screencast: 
@@ -274,8 +278,8 @@ schedule:
   - text: Python sqlite3 — DB-API
     link: https://docs.python.org/3/library/sqlite3.html
     
-- week: 10
-  day: 5
+- week: 11
+  day: 3
   lecture: "DuckDB & SQL"
   slides: Lec18
   screencast: 
@@ -286,7 +290,7 @@ schedule:
     link: https://gist.github.com/mattmc3/38a85e6a4ca1093816c08d4815fbebfb
 
 - week: 11
-  day: 3
+  day: 5
   lecture: "Shiny"
   slides: Lec19
   screencast: 
@@ -299,8 +303,8 @@ schedule:
     link: https://mastering-shiny.org/
   suppmat: 
 
-- week: 11
-  day: 5
+- week: 12
+  day: 3
   lecture: "bslib & dashboards"
   slides: Lec20
   screencast: 
@@ -313,7 +317,7 @@ schedule:
     link: https://github.com/nanxstats/awesome-shiny-extensions
 
 - week: 12
-  day: 3
+  day: 5
   lecture: "Profiling & Parallelization"
   slides: Lec21
   screencast: 
@@ -324,8 +328,8 @@ schedule:
     link: https://furrr.futureverse.org/
   suppmat: 
 
-- week: 12
-  day: 5
+- week: 13
+  day: 3
   lecture: "Spatial data"
   slides: Lec22
   screencast: 
@@ -335,7 +339,7 @@ schedule:
   suppmat: 
 
 - week: 13
-  day: 3
+  day: 5
   lecture: "Tidy Models"
   screencast: 
   slides: Lec23
@@ -344,15 +348,15 @@ schedule:
     link: https://www.tidymodels.org/start/
   suppmat: 
 
-- week: 13
-  day: 5
+- week: 14
+  day: 3
   lecture: "More Tidy Models"
   screencast: 
   slides: Lec24
   suppmat: 
 
 - week: 14
-  day: 3
+  day: 5
   lecture: "R Packages"
   slides: Lec25
   screencast:
@@ -367,9 +371,9 @@ schedule:
     link: https://testthat.r-lib.org/
   suppmat: 
 
-- week: 14
-  day: 5
-  lecture: "R Packages (cont.)"
+#- week: 14
+#  day: 5
+#  lecture: "R Packages (cont.)"
 
 - week: 15
   day: 3
