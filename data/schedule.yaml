@@ -87,7 +87,6 @@ schedule:
   lecture: "Tidy data & dplyr"
   slides: Lec06
   screencast: 
-  suppmat:
   readings:
   - text: Tidy Data paper
     link: https://vita.had.co.nz/papers/tidy-data.pdf
