@@ -36,7 +36,7 @@ R supports the creation of 2d data structures of atomic vector types.
 
 Generally these are formed via a call to `matrix()`.
 
-:::: {.columns}
+:::: {.columns .medium}
 ::: {.column width='50%'}
 ```{r}
 matrix(1:4, nrow=2, ncol=2)
@@ -80,13 +80,15 @@ We can populate a matrix by row, but the data is still stored by column.
 :::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
-(x = matrix(1:6, nrow=2, ncol=3, byrow = TRUE))
+(x = matrix(1:6, nrow=2, ncol=3, 
+            byrow = TRUE))
 c(x)
 ```
 :::
 ::: {.column width='50%'}
 ```{r}
-(y = matrix(1:6, nrow=3, ncol=2, byrow=TRUE))
+(y = matrix(1:6, nrow=3, ncol=2, 
+            byrow=TRUE))
 c(y)
 ```
 :::
@@ -281,7 +283,7 @@ str(df)
 
 When creating a data frame from vectors, the lengths of the component vectors will be coerced to match. However, if they not multiples of each other then there will be an error (other previous forms of length coercion would produce a warning for this case).
 
-:::  medium
+:::  small
 ```{r}
 #| error: True
 data.frame(x = 1:3, y = c("a"))
@@ -290,7 +292,7 @@ data.frame(x = 1:3, y = c("a"))
 
 . . .
 
-:::  medium
+:::  small
 ```{r}
 #| error: True
 data.frame(x = 1:3, y = c("a","b"))
@@ -299,7 +301,7 @@ data.frame(x = 1:3, y = c("a","b"))
 
 . . .
 
-:::  medium
+:::  small
 ```{r}
 #| error: True
 data.frame(x = 1:3, y = character())
