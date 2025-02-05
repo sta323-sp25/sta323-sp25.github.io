@@ -40,7 +40,17 @@ library(tidyverse)
 ![](imgs/hex-tidyr.png){fig-align="center" width="50%"}
 
 
-# Reshaping data<br/>(Wide vs. Long)
+# Reshaping data
+
+## Wide vs Long
+
+::: {.center}
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif){fig-align="center" width="50%"}
+:::
+
+::: {.aside}
+From [gadenbuie/tidyexplain](https://github.com/gadenbuie/tidyexplain)
+:::
 
 ## Wide -> Long
 
@@ -517,7 +527,7 @@ unnest_wider(sw_df, people) |>
 ```
 :::
 
-## Aside - sw_starships
+## `sw_starships`
 
 ::: {.medium}
 ```{r}
@@ -539,7 +549,7 @@ unnest_wider(sw_df, people) |>
 * Think about if you need all the data or not - `unnest_*()` are not always the best choice (more on the `hoist()` alternative next time)
 
 
-# Aside - Joins
+# Joins
 
 ![](imgs/hex-dplyr.png){fig-align="center" width="50%"}
 
