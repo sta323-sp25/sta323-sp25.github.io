@@ -1,5 +1,13 @@
 library(tidyverse)
 
+## Exercise 1
+
+palmerpenguins::penguins |>
+  count(island, species) |>
+  pivot_wider(id_cols = island, names_from = species, values_from = n, values_fill = 0)
+
+
+
 ## Example 1
 
 (grades = tibble::tribble(
@@ -25,14 +33,6 @@ grades |>
   mutate(
     overall = 0.5 * (hw/20) + 0.5 * (proj/100)
   )
-
-
-
-## Exercise 1
-
-palmerpenguins::penguins |>
-  count(island, species) |>
-  pivot_wider(id_cols = island, names_from = species, values_from = n, values_fill = 0)
 
 
 
