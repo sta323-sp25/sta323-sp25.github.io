@@ -41,7 +41,7 @@ library(bslib)
 ## The Grammar of Graphics
 
 - Visualization concept created by Leland Wilkinson (The Grammar of Graphics, 1999)
-- attempt to taxonimize the basic elements of statistical graphics
+- attempt to taxonomize the basic elements of statistical graphics
 
 
 - Adapted for R by Hadley Wickham (2009)
@@ -433,7 +433,7 @@ ggplot(
 > label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively,
 > label the legend "Species", 
 > and add a caption for the data source.
-> *Finally, use the viridis color palete for all points.*
+> *Finally, use the viridis color palette for all points.*
 
 ```{r penguins-10}
 #| code-line-numbers: "21"
