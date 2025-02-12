@@ -69,6 +69,7 @@ A statistical graphic is a...
 
 ## Anatomy of a ggplot call
 
+::: {.xsmall}
 ```r
 ggplot(
   data = [dataframe], 
@@ -90,7 +91,7 @@ ggplot(
   facet_[some facet]([formula]) +
   ... # other options
 ```
-
+:::
 
 ## Data - Palmer Penguins
 
@@ -125,7 +126,7 @@ options(width = 65)
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > *Start with the `penguins` data frame*
 
 
@@ -140,7 +141,7 @@ ggplot(data = penguins)
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > *map bill depth to the x-axis*
 
@@ -161,7 +162,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > *and map bill length to the y-axis.*
@@ -184,7 +185,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -209,7 +210,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -237,7 +238,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -267,7 +268,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -302,7 +303,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -340,7 +341,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -380,7 +381,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -422,7 +423,7 @@ ggplot(
 
 ##
 
-::: {.small}
+::: {.xsmall}
 > Start with the `penguins` data frame,
 > map bill depth to the x-axis
 > and map bill length to the y-axis. 
@@ -487,7 +488,7 @@ Different geometries have different aesthetics available - see the [ggplot2 geom
 
 ## color
 
-::: {.small}
+::: {.xsmall}
 ```{r color}
 #| out-width: 75%
 ggplot(
@@ -502,7 +503,7 @@ ggplot(
 
 ## Stop the warning
 
-::: {.small}
+::: {.xsmall}
 ```{r color_narm}
 #| out-width: 75%
 ggplot(
@@ -519,7 +520,7 @@ ggplot(
 
 Mapped to a different variable than `color`
 
-::: {.small}
+::: {.xsmall}
 ```{r shape-island}
 #| out-width: 75%
 ggplot(
@@ -537,7 +538,7 @@ ggplot(
 
 Mapped to same variable as `color`
 
-::: {.small}
+::: {.xsmall}
 ```{r shape-species}
 #| out-width: 75%
 ggplot(
@@ -553,9 +554,9 @@ ggplot(
 
 ## Size
 
-Using a fixed value (note this value is outside of the `aes` call)
+Using a fixed value - note that this value is outside of the `aes` call
 
-::: {.small}
+::: {.xsmall}
 ```{r size1}
 #| out-width: 66%
 ggplot(
@@ -574,7 +575,7 @@ ggplot(
 
 Mapped to a variable
 
-::: {.small}
+::: {.xsmall}
 ```{r size2}
 #| out-width: 66%
 ggplot(
@@ -590,7 +591,7 @@ ggplot(
 
 ## Alpha
 
-::: {.small}
+::: {.xsmall}
 ```{r alpha}
 #| out-width: 75%
 ggplot(
@@ -613,7 +614,7 @@ ggplot(
 
 <br/>
 
-- **Setting** - Determine an aesthetic (the size, alpha, etc.) of a geom **not** based on the values of a variable in the data, usually a constant value.
+- **Setting** - Determine an aesthetic (the size, alpha, etc.) of a geom using a constant value not directly from the data.
   - passed directly into `geom_*()` as an argument.
 
 . . .
@@ -638,7 +639,7 @@ From the previous slide `color`, `shape`, and `alpha` are all **aesthetics** whi
 
 ## facet_grid
 
-::: {.small}
+::: {.xsmall}
 ```{r facet}
 #| out-width: 75%
 ggplot(
@@ -654,7 +655,7 @@ ggplot(
 
 ## Compare with ...
 
-::: {.small}
+::: {.xsmall}
 ```{r facet_comp}
 #| out-width: 75%
 ggplot(
@@ -670,7 +671,7 @@ ggplot(
 
 ## facet_grid (cols)
 
-::: {.small}
+::: {.xsmall}
 ```{r facet2}
 #| out-width: 75%
 ggplot(
@@ -686,7 +687,7 @@ ggplot(
 
 ## facet_grid (rows)
 
-::: {.small}
+::: {.xsmall}
 ```{r facet3}
 #| out-width: 75%
 ggplot(
@@ -702,7 +703,7 @@ ggplot(
 
 ## facet_wrap
 
-::: {.small}
+::: {.xsmall}
 ```{r facetwrap}
 #| out-width: 75%
 ggplot(
@@ -718,7 +719,7 @@ ggplot(
 
 ## facet_wrap
 
-::: {.small}
+::: {.xsmall}
 ```{r facetwrap2}
 #| out-width: 75%
 ggplot(
@@ -735,7 +736,7 @@ ggplot(
 
 ## Faceting and color
 
-::: {.small}
+::: {.xsmall}
 ```{r facet-color-legend}
 #| out-width: 75%
 ggplot(
@@ -751,7 +752,7 @@ ggplot(
 
 ## Hiding legend elements
 
-::: {.small}
+::: {.xsmall}
 ```{r facet-color-no-legend}
 #| out-width: 66%
 ggplot(
@@ -777,7 +778,7 @@ knitr::opts_chunk$set(out.width="75%")
 
 ## Histograms
 
-::: {.medium}
+::: {.small}
 ```{r hist1, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g)
@@ -788,7 +789,7 @@ ggplot(
 
 ## Histograms - bins
 
-::: {.medium}
+::: {.small}
 ```{r hist3, warning = FALSE}
 ggplot(
   penguins, aes( x = body_mass_g )
@@ -800,7 +801,7 @@ ggplot(
 
 ## Histograms - binwidth
 
-::: {.medium}
+::: {.small}
 ```{r hist2, warning = FALSE}
 ggplot(
   penguins, aes( x = body_mass_g )
@@ -814,7 +815,7 @@ ggplot(
 
 ## Histograms - color
 
-::: {.medium}
+::: {.small}
 ```{r hist5, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, color = species)
@@ -826,7 +827,7 @@ ggplot(
 
 ## Histograms - fill
 
-::: {.medium}
+::: {.small}
 ```{r hist4, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, fill = species)
@@ -838,7 +839,7 @@ ggplot(
 
 ## Histograms - position
 
-::: {.medium}
+::: {.small}
 ```{r hist_pos, warning = FALSE}
 #| out-width: 66%
 ggplot(
@@ -854,7 +855,7 @@ ggplot(
 
 ## Histograms - facets
 
-::: {.medium}   
+::: {.small}   
 ```{r hist6, warning = FALSE}
 #| out-width: 66%
 ggplot(
@@ -869,7 +870,7 @@ ggplot(
 
 ## Density plot
 
-::: {.medium}
+::: {.small}
 ```{r dens1, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g)
@@ -881,7 +882,7 @@ ggplot(
 
 ## Density plot - fill
 
-::: {.medium}
+::: {.small}
 ```{r dens3, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, fill = species)
@@ -893,7 +894,7 @@ ggplot(
 
 ## Density plot - adjust
 
-::: {.medium}
+::: {.small}
 ```{r dens2, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, fill = species)
@@ -907,7 +908,7 @@ ggplot(
 
 ## Violin plot
 
-::: {.medium}
+::: {.small}
 ```{r violin, warning = FALSE}
 ggplot(
   penguins, aes(x = species, fill = species, y = body_mass_g )
@@ -919,7 +920,7 @@ ggplot(
 
 ## Ridge plot
 
-::: {.medium}
+::: {.small}
 ```{r ridge, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, y = species, fill = species)
@@ -932,7 +933,7 @@ ggplot(
 
 ## Ridge plot - more categories + dplyr
 
-::: {.small}
+::: {.xsmall}
 ```{r ridge2, warning = FALSE}
 #| out-width: 100%
 penguins |>
@@ -946,7 +947,7 @@ penguins |>
 
 ## Box plot
 
-::: {.medium}
+::: {.small}
 ```{r box1, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, y = species)
@@ -958,7 +959,7 @@ ggplot(
 
 ## Box plot - coord_flip
 
-::: {.medium}
+::: {.small}
 ```{r box2, warning = FALSE}
 ggplot(
   penguins, aes(x = body_mass_g, y = species)
@@ -971,7 +972,7 @@ ggplot(
 
 ## Box plot - swap coords
 
-::: {.medium}
+::: {.small}
 ```{r box3, warning = FALSE}
 ggplot(
   penguins, aes(x = species, y = body_mass_g)
@@ -983,7 +984,7 @@ ggplot(
 
 ## Scatter plot
 
-::: {.medium}
+::: {.small}
 ```{r scatter1, warning = FALSE}
 ggplot(
   penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)
@@ -995,7 +996,7 @@ ggplot(
 
 ## Scatter plot - geom_smooth
 
-::: {.medium}
+::: {.small}
 ```{r scatter3, warning = FALSE}
 ggplot(
   penguins, 
@@ -1008,7 +1009,7 @@ ggplot(
 
 ## Scatter plot - geom_smooth w/ lm
 
-::: {.medium}
+::: {.small}
 ```{r scatter2, warning = FALSE}
 ggplot(
   penguins, aes(x = bill_depth_mm, y = bill_length_mm, color = species)
@@ -1025,7 +1026,7 @@ ggplot(
 
 ## Line plot
 
-::: {.medium}
+::: {.small}
 ```{r line, warning = FALSE}
 #| out-width: 66%
 penguins |>
@@ -1040,7 +1041,7 @@ penguins |>
 
 ## Line plot - with points
 
-::: {.medium}
+::: {.small}
 ```{r line2, warning = FALSE}
 #| out-width: 66%
 penguins |>
@@ -1056,7 +1057,7 @@ penguins |>
 
 ## Bar plot
 
-::: {.medium}
+::: {.small}
 ```{r bar1, warning = FALSE}
 ggplot(
   penguins, aes(x = species)
@@ -1068,7 +1069,7 @@ ggplot(
 
 ## Stacked bar plot
 
-::: {.medium}
+::: {.small}
 ```{r bar2, warning = FALSE}
 ggplot(
   penguins, aes(x = species, fill = island)
@@ -1080,7 +1081,7 @@ ggplot(
 
 ## Stacked relative frequency bar plot
 
-::: {.medium}
+::: {.small}
 ```{r bar3, warning = FALSE}
 ggplot(
   penguins, aes(x = species, fill = island)
@@ -1092,7 +1093,7 @@ ggplot(
 
 ## Dodged bar plot
 
-::: {.medium}
+::: {.small}
 ```{r bar4, warning = FALSE}
 ggplot(
   penguins, aes(x = species,fill = sex)
