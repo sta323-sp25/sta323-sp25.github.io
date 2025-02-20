@@ -4,52 +4,51 @@ schedule:
 
 - week: 0
   day: 3
-  lecture: <i>No class (Monday Schedule)</i>
+  lecture: "<i>No class (Monday Schedule)</i>"
 
 - week: 0
   day: 5
   lecture: "Welcome & Syllabus"
   slides: Lec01
-  screencast: 
+  screencast:
   suppmat:
   readings:
-  - text: GitHub Auth Guide
-    link: https://github.com/DukeStatSci/github_auth_guide
-  - text: Happy Git and GitHub
-    link: http://happygitwithr.com/
+    - text: GitHub Auth Guide
+      link: https://github.com/DukeStatSci/github_auth_guide
+    - text: Happy Git and GitHub
+      link: http://happygitwithr.com/
 
 - week: 1
   day: 2
-  lecture: <i>No lab</i>
-
+  lecture: No lab
 
 - week: 1
   day: 3
   lecture: "Types and Control Flow in R"
   slides: Lec02
-  screencast: 
+  screencast:
   readings:
-  - text: Tidyverse style guide
-    link: https://style.tidyverse.org/
-  - text: Adv-R - Data Structures
-    link: http://adv-r.had.co.nz/Data-structures.html
+    - text: Tidyverse style guide
+      link: https://style.tidyverse.org/
+    - text: Adv-R - Data Structures
+      link: http://adv-r.had.co.nz/Data-structures.html
   suppmat:
-  - text: Python Built-in Types
-    link: https://docs.python.org/3/library/stdtypes.html
-  - text: An Informal Introduction to Python
-    link: https://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator
-    
+    - text: Python Built-in Types
+      link: https://docs.python.org/3/library/stdtypes.html
+    - text: An Informal Introduction to Python
+      link: https://docs.python.org/3/tutorial/introduction.html#using-python-as-a-calculator
+
 - week: 1
   day: 5
   lecture: "Error checking, functions, and loops"
   slides: Lec03
-  screencast: 
+  screencast:
   suppmat:
-  - text: Control flow
-    link: https://docs.python.org/3/tutorial/controlflow.html
-  - text: Errors and Exceptions
-    link: https://docs.python.org/3/tutorial/errors.html
-  
+    - text: Control flow
+      link: https://docs.python.org/3/tutorial/controlflow.html
+    - text: Errors and Exceptions
+      link: https://docs.python.org/3/tutorial/errors.html
+
 - week: 2
   day: 5
   lecture: "<i>No class - snow</i>"
@@ -58,345 +57,318 @@ schedule:
   day: 5
   lecture: "Lists, Attributes, & S3"
   slides: Lec04
-  screencast: 
+  screencast:
   readings:
-  - text: Adv R - OO Field Guide - S3
-    link: http://adv-r.had.co.nz/OO-essentials.html#s3
-  suppmat: 
-  - text: Lists, Sets and Dicts
-    link: https://docs.python.org/3/tutorial/datastructures.html
+    - text: Adv R - OO Field Guide - S3
+      link: http://adv-r.had.co.nz/OO-essentials.html#s3
+  suppmat:
+    - text: Lists, Sets and Dicts
+      link: https://docs.python.org/3/tutorial/datastructures.html
 
 - week: 3
   day: 3
   lecture: "Matrices, data frames, & subsetting"
   slides: Lec05
-  screencast: 
+  screencast:
   readings:
-  - text: Adv-R - Subsetting
-    link: http://adv-r.had.co.nz/Subsetting.html
-  suppmat: 
-  - text: NumPy API Reference
-    link: https://numpy.org/doc/stable/reference/index.html
-  - text: Broadcasting
-    link: https://numpy.org/doc/stable/user/basics.broadcasting.html
-  - text: Advanced indexing
-    link: https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing
+    - text: Adv-R - Subsetting
+      link: http://adv-r.had.co.nz/Subsetting.html
+  suppmat:
+    - text: NumPy API Reference
+      link: https://numpy.org/doc/stable/reference/index.html
+    - text: Broadcasting
+      link: https://numpy.org/doc/stable/user/basics.broadcasting.html
+    - text: Advanced indexing
+      link: https://numpy.org/doc/stable/user/basics.indexing.html#advanced-indexing
 
 - week: 3
   day: 5
   lecture: "Tidy data & dplyr"
   slides: Lec06
-  screencast: 
+  screencast:
   readings:
-  - text: Tidy Data paper
-    link: https://vita.had.co.nz/papers/tidy-data.pdf
-  - text: dplyr Vignette
-    link: https://dplyr.tidyverse.org/articles/dplyr.html
-  - text: R4DS - tidy data
-    link: http://r4ds.had.co.nz/tidy-data.html
-  - text: Data transformation cheatsheet
-    link: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
-  suppmat: 
-  - text: Python for Data Analysis
-    link: https://wesmckinney.com/book/pandas-basics.html
-  - text: Group By
-    link: https://pandas.pydata.org/docs/user_guide/groupby.html
-    
+    - text: Tidy Data paper
+      link: https://vita.had.co.nz/papers/tidy-data.pdf
+    - text: dplyr Vignette
+      link: https://dplyr.tidyverse.org/articles/dplyr.html
+    - text: R4DS - tidy data
+      link: http://r4ds.had.co.nz/tidy-data.html
+    - text: Data transformation cheatsheet
+      link: https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf
+  suppmat:
+    - text: Python for Data Analysis
+      link: https://wesmckinney.com/book/pandas-basics.html
+    - text: Group By
+      link: https://pandas.pydata.org/docs/user_guide/groupby.html
+
 - week: 4
   day: 3
   lecture: "tidyr"
   slides: Lec07
-  screencast: 
+  screencast:
   readings:
-  - text: tidyr pivoting
-    link: https://tidyr.tidyverse.org/articles/pivot.html
-  - text: tidyr rectangling
-    link: https://tidyr.tidyverse.org/articles/rectangle.html
+    - text: tidyr pivoting
+      link: https://tidyr.tidyverse.org/articles/pivot.html
+    - text: tidyr rectangling
+      link: https://tidyr.tidyverse.org/articles/rectangle.html
   suppmat:
-  - text: Reshaping
-    link: https://pandas.pydata.org/docs/user_guide/reshaping.
+    - text: Reshaping
+      link: https://pandas.pydata.org/docs/user_guide/reshaping.
 
 - week: 4
   day: 5
   lecture: "Functional programming & purrr"
   slides: Lec08
-  screencast: 
+  screencast:
   readings:
-  - text: Purrr tutorial
-    link: https://jennybc.github.io/purrr-tutorial/index.html
-  - text: R4DS - Iteration
-    link: http://r4ds.had.co.nz/iteration.html
-  - text: purrr cheatsheet
-    link: https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf
-  suppmat: 
+    - text: Purrr tutorial
+      link: https://jennybc.github.io/purrr-tutorial/index.html
+    - text: R4DS - Iteration
+      link: http://r4ds.had.co.nz/iteration.html
+    - text: purrr cheatsheet
+      link: https://github.com/rstudio/cheatsheets/raw/master/purrr.pdf
+  suppmat:
 
 - week: 5
   day: 3
   lecture: "ggplot2"
   slides: Lec09
-  screencast: 
+  screencast:
   readings:
-  - text:  R4DS - Visualization
-    link: http://r4ds.had.co.nz/data-visualisation.html
-  - text: ggplot2 Reference
-    link: http://ggplot2.tidyverse.org/reference/index.html
-  suppmat: 
-  - text: matplotlib tutorials
-    link: https://matplotlib.org/stable/tutorials/index
-  - text: seaborn user guide
-    link: https://seaborn.pydata.org/tutorial.html
-  - text: plotnine
-    link: https://plotnine.readthedocs.io/en/stable/
+    - text: R4DS - Visualization
+      link: http://r4ds.had.co.nz/data-visualisation.html
+    - text: ggplot2 Reference
+      link: http://ggplot2.tidyverse.org/reference/index.html
+  suppmat:
+    - text: matplotlib tutorials
+      link: https://matplotlib.org/stable/tutorials/index
+    - text: seaborn user guide
+      link: https://seaborn.pydata.org/tutorial.html
+    - text: plotnine
+      link: https://plotnine.readthedocs.io/en/stable/
 
 - week: 5
   day: 5
   lecture: "Visualization Design"
   slides: Lec10
-  screencast: 
+  screencast:
   readings:
   suppmat:
 
 - week: 6
   day: 3
+  lecture: "<i>No class - snow</i>"
+
+- week: 6
+  day: 5
   lecture: "Text processing & Regular expressions"
   slides: Lec11
-  screencast: 
+  screencast:
   readings:
-  - text: stringr Cheat Sheet, 
-    link: https://github.com/rstudio/cheatsheets/blob/master/strings.pdf
-  - text: stringr vignette
-    link: https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html
-  - text: R4DS - Strings
-    link: https://r4ds.had.co.nz/strings.html
-  suppmat: 
-  - text: string — Common string operations
-    link: https://docs.python.org/3/library/string.html
-  - text: re — Regular expression operations
-    link: https://docs.python.org/3/library/re.html
-    
-- week: 6
-  day: 5
-  lecture: "Web scraping"
-  slides: Lec12
-  screencast: 
-  readings:
-  - text: rvest - selector gadget vignette
-    link: https://rvest.tidyverse.org/articles/articles/selectorgadget.html
-  suppmat: 
-  - text: BeautifulSoup
-    link: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
-    
+    - text: stringr Cheat Sheet,
+      link: https://github.com/rstudio/cheatsheets/blob/master/strings.pdf
+    - text: stringr vignette
+      link: https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html
+    - text: R4DS - Strings
+      link: https://r4ds.had.co.nz/strings.html
+  suppmat:
+    - text: string — Common string operations
+      link: https://docs.python.org/3/library/string.html
+    - text: re — Regular expression operations
+      link: https://docs.python.org/3/library/re.html
+
 - week: 7
   day: 3
-  lecture: "Web APIs"
-  slides: Lec13
-  screencast: 
+  lecture: "Web scraping"
+  slides: Lec12
+  screencast:
   readings:
-  - text: httr2
-    link: https://httr2.r-lib.org/
-  - text: httr - Best practices for API packages
-    link: https://httr.r-lib.org/articles/api-packages.html
+    - text: rvest - selector gadget vignette
+      link: https://rvest.tidyverse.org/articles/articles/selectorgadget.html
   suppmat:
-  - text: Requests
-    link: https://requests.readthedocs.io/en/latest/
+    - text: BeautifulSoup
+      link: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 
 - week: 7
   day: 5
+  lecture: "Web APIs"
+  slides: Lec13
+  screencast:
+  readings:
+    - text: httr2
+      link: https://httr2.r-lib.org/
+    - text: httr - Best practices for API packages
+      link: https://httr.r-lib.org/articles/api-packages.html
+  suppmat:
+    - text: Requests
+      link: https://requests.readthedocs.io/en/latest/
+
+- week: 8
+  day: 3
   lecture: "Building APIs with R (plumber)"
   slides: Lec14
   screencast:
   readings:
-  - text: plumber documentation
-    link: https://www.rplumber.io/index.html
-  - text: plumber webinar
-    link: https://posit.co/resources/videos/expanding-r-horizons-integrating-r-with-plumber-apis/
-
-- week: 8
-  day: 3
-  lecture: "filesystems, Dennys & LQ scraping"
-  screencast: 
-  slides: Lec15
-  readings:
-  - text: Project-oriented workflow
-    link: https://rstats.wtf/project-oriented-workflow.html
-  - text: fs comparison
-    link: https://fs.r-lib.org/articles/function-comparisons.html
-  suppmat: 
+    - text: plumber documentation
+      link: https://www.rplumber.io/index.html
+    - text: plumber webinar
+      link: https://posit.co/resources/videos/expanding-r-horizons-integrating-r-with-plumber-apis/
 
 - week: 8
   day: 5
-  lecture: "make"
-  slides: Lec16
-  screencast: 
+  lecture: "filesystems, Dennys & LQ scraping"
+  screencast:
+  slides: Lec15
   readings:
-  - text: Minimal make
-    link: https://kbroman.org/minimal_make/
-  - text: Why use make
-    link: https://bost.ocks.org/mike/make/
-  suppmat: 
-
-
-
+    - text: Project-oriented workflow
+      link: https://rstats.wtf/project-oriented-workflow.html
+    - text: fs comparison
+      link: https://fs.r-lib.org/articles/function-comparisons.html
+  suppmat:
 
 - week: 9
   day: 2
-  lecture: "<i>No lab</i> - Spring recess"
+  lecture: "<i>No lab - Spring recess</i>"
 
 - week: 9
   day: 3
-  lecture: "<i>No class</i> - Spring recess"
+  lecture: "<i>No class - Spring recess</i>"
 
 - week: 9
   day: 5
-  lecture: "<i>No class</i> - Spring recess"
+  lecture: "<i>No class - Spring recess</i>"
 
 - week: 10
   day: 3
-  lecture: "targets"
+  lecture: "make"
   slides: Lec16
-  screencast: 
+  screencast:
   readings:
-  - text: targets manual
-    link: https://books.ropensci.org/targets/
+    - text: Minimal make
+      link: https://kbroman.org/minimal_make/
+    - text: Why use make
+      link: https://bost.ocks.org/mike/make/
   suppmat:
 
-
 - week: 10
   day: 5
+  lecture: "targets"
+  slides: Lec16
+  screencast:
+  readings:
+    - text: targets manual
+      link: https://books.ropensci.org/targets/
+  suppmat:
+
+- week: 11
+  day: 3
   lecture: "Databases & dplyr"
   slides: Lec17
-  screencast: 
+  screencast:
   readings:
-  - text: SQL Translation
-    link: https://cran.r-project.org/web/packages/dbplyr/vignettes/sql-translation.html
-  - text: dbplyr Vignette
-    link: https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html
-  suppmat: 
-  - text: Python Database API Specification
-    link: https://peps.python.org/pep-0249/
-  - text: Python sqlite3 — DB-API
-    link: https://docs.python.org/3/library/sqlite3.html
-    
+    - text: SQL Translation
+      link: https://cran.r-project.org/web/packages/dbplyr/vignettes/sql-translation.html
+    - text: dbplyr Vignette
+      link: https://cran.r-project.org/web/packages/dbplyr/vignettes/dbplyr.html
+  suppmat:
+    - text: Python Database API Specification
+      link: https://peps.python.org/pep-0249/
+    - text: Python sqlite3 — DB-API
+      link: https://docs.python.org/3/library/sqlite3.html
+
 - week: 11
-  day: 3
+  day: 5
   lecture: "DuckDB & SQL"
   slides: Lec18
-  screencast: 
+  screencast:
   readings:
-  - text: DuckDB SQL Reference
-    link: https://duckdb.org/docs/sql/introduction
-  - text: Modern SQL Style Guide
-    link: https://gist.github.com/mattmc3/38a85e6a4ca1093816c08d4815fbebfb
+    - text: DuckDB SQL Reference
+      link: https://duckdb.org/docs/sql/introduction
+    - text: Modern SQL Style Guide
+      link: https://gist.github.com/mattmc3/38a85e6a4ca1093816c08d4815fbebfb
 
-- week: 11
-  day: 5
+- week: 12
+  day: 3
   lecture: "Shiny"
   slides: Lec19
-  screencast: 
+  screencast:
   readings:
-  - text: Shiny Docs & Gallery
-    link: http://shiny.rstudio.com/
-  - text: Widget Gallery
-    link: http://shiny.rstudio.com/gallery/widget-gallery.html
-  - text: Mastering Shiny
-    link: https://mastering-shiny.org/
-  suppmat: 
+    - text: Shiny Docs & Gallery
+      link: http://shiny.rstudio.com/
+    - text: Widget Gallery
+      link: http://shiny.rstudio.com/gallery/widget-gallery.html
+    - text: Mastering Shiny
+      link: https://mastering-shiny.org/
+  suppmat:
 
 - week: 12
-  day: 3
+  day: 5
   lecture: "bslib & dashboards"
   slides: Lec20
-  screencast: 
+  screencast:
   readings:
-  - text: bslib
-    link: https://rstudio.github.io/bslib/
-  - text: Posit Conf 2023 - Shiny Dashboards
-    link: https://posit-conf-2023.github.io/shiny-r-dashboard/
-  - text: Awesome Shiny Extensions
-    link: https://github.com/nanxstats/awesome-shiny-extensions
+    - text: bslib
+      link: https://rstudio.github.io/bslib/
+    - text: Posit Conf 2023 - Shiny Dashboards
+      link: https://posit-conf-2023.github.io/shiny-r-dashboard/
+    - text: Awesome Shiny Extensions
+      link: https://github.com/nanxstats/awesome-shiny-extensions
 
-- week: 12
-  day: 5
+- week: 13
+  day: 3
   lecture: "Profiling & Parallelization"
   slides: Lec21
-  screencast: 
+  screencast:
   readings:
-  - text: "parallel Vignettes"
-    link: https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf
-  - text: "furrr"
-    link: https://furrr.futureverse.org/
-  suppmat: 
+    - text: "parallel Vignettes"
+      link: https://stat.ethz.ch/R-manual/R-devel/library/parallel/doc/parallel.pdf
+    - text: "furrr"
+      link: https://furrr.futureverse.org/
+  suppmat:
 
 - week: 13
-  day: 3
+  day: 5
   lecture: "Spatial data"
   slides: Lec22
-  screencast: 
+  screencast:
   readings:
-  - text: "sf Vignettes"
-    link: https://cran.r-project.org/web/packages/sf/vignettes/
-  suppmat: 
-
-- week: 13
-  day: 5
-  lecture: "Tidy Models"
-  screencast: 
-  slides: Lec23
-  readings:
-  - text: "Tidy Models - Get Started"
-    link: https://www.tidymodels.org/start/
-  suppmat: 
+    - text: "sf Vignettes"
+      link: https://cran.r-project.org/web/packages/sf/vignettes/
+  suppmat:
 
 - week: 14
   day: 3
-  lecture: "More Tidy Models"
-  screencast: 
-  slides: Lec24
-  suppmat: 
+  lecture: "Tidy Models"
+  screencast:
+  slides: Lec23
+  readings:
+    - text: "Tidy Models - Get Started"
+      link: https://www.tidymodels.org/start/
+  suppmat:
 
 - week: 14
   day: 5
+  lecture: "More Tidy Models"
+  screencast:
+  slides: Lec24
+  suppmat:
+
+- week: 15
+  day: 3
   lecture: "R Packages"
   slides: Lec25
   screencast:
   readings:
-  - text: R Packages
-    link: https://r-pkgs.org/
-  - text: usethis
-    link: https://usethis.r-lib.org/
-  - text: Roxygen2
-    link: https://roxygen2.r-lib.org/
-  - text: testthat
-    link: https://testthat.r-lib.org/
-  suppmat: 
-
-#- week: 14
-#  day: 5
-#  lecture: "R Packages (cont.)"
-
-- week: 15
-  day: 3
-  lecture: "Rcpp"
-  screencast: 
-  slides: Lec25
-  suppmat: 
+    - text: R Packages
+      link: https://r-pkgs.org/
+    - text: usethis
+      link: https://usethis.r-lib.org/
+    - text: Roxygen2
+      link: https://roxygen2.r-lib.org/
+    - text: testthat
+      link: https://testthat.r-lib.org/
+  suppmat:
 
 - week: 16
   day: 4
-  lecture: "<i>Final project due by 5 pm</i>"
-
-
-
-#- week: 14
-#  day: 5
-#  lecture: "Rcpp"
-#  screencast: 
-#  slides:
-#  suppmat:
-#  readings:
-#  - text: Rcpp Gallery
-#    link: https://gallery.rcpp.org/
-#  - text: Advanced R - Rcpp
-#    link: https://adv-r.hadley.nz/rcpp.html
-#  - text: Seamless R and C++ Integration with Rcpp
-#    link: https://link.springer.com/book/10.1007/978-1-4614-6868-4
+  lecture: "Final project due by 5 pm"
