@@ -619,39 +619,51 @@ Sometimes we want to specify that our pattern occurs at a particular location in
 
 ## Anchor Examples
 
+::: {.small}
 ```{r}
 text = "the quick brown fox jumps over the lazy dog"
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 str_replace(text, "^the" , "---")
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 str_replace(text, "^dog" , "---")
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 str_replace(text, "the$" , "---")
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 str_replace(text, "dog$" , "---")
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 str_replace_all(text, "the" , "---")
 ```
+:::
 
 
 
@@ -836,12 +848,13 @@ For the following vector of randomly generated names, write a regular expression
 
 * detects if neither the person's first nor last name start with a vowel
 
-
+::: {.small}
 ```{r echo=FALSE, comment=""}
 library(randomNames)
 set.seed(124)
 dput(randomNames(20, name.order="first.last" , name.sep=" "))
 ```
+:::
 
 
 ```{r}
@@ -932,7 +945,7 @@ Groups allow you to connect pieces of a regular expression for modification or c
 
 ## Example
 
-::: {.medium}
+::: {.small}
 ```{r}
 text = c("Bob Smith" , "Alice Smith" , "Apple")
 ```
@@ -940,7 +953,7 @@ text = c("Bob Smith" , "Alice Smith" , "Apple")
 
 . . .
 
-:::: {.columns .medium}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 str_extract(text, "^[:alpha:]+")
@@ -955,7 +968,7 @@ str_match(text, "^[:alpha:]+")
 
 . . .
 
-:::: {.columns .medium}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 str_extract(text, "^([:alpha:]+) [:alpha:]+")
@@ -972,7 +985,7 @@ str_match(text, "^([:alpha:]+) [:alpha:]+")
 . . .
 
 
-:::: {.columns .medium}
+:::: {.columns .small}
 ::: {.column width='50%'}
 ```{r}
 str_extract(text, "^([:alpha:]+) ([:alpha:]+)")
