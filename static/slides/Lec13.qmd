@@ -63,12 +63,9 @@ Format generally follows:
 Some quick examples,
 
 ::: {.small}
-* `http://lmgtfy.com/?q=hello%20world`
+* <http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=1600+Amphitheatre+Parkway>
 
-* `http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=1600+Amphitheatre+Parkway`
-
-* `https://nomnom-prod-api.dennys.com/mapbox/geocoding/v5/mapbox.places/raleigh,%20nc.json?`
-   `types=country,region,postcode,place&country=us,pr,vi,gu,mp,ca`
+* <https://swapi.dev/api/people/?search=r2>
 :::
 
 

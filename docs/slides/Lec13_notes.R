@@ -9,11 +9,11 @@ jsonlite::read_json("https://api.github.com/users/rundel")
 
 # https://api.github.com/orgs/ORG/repos
 
+z = jsonlite::read_json("https://api.github.com/orgs/sta323-sp25/repos")
+
 z = jsonlite::read_json("https://api.github.com/orgs/tidyverse/repos")
 
 z = jsonlite::read_json("https://api.github.com/orgs/tidyverse/repos?per_page=100")
-
-z = jsonlite::read_json("https://api.github.com/orgs/sta323-sp25/repos")
 
 z |> map_chr("full_name")
 
@@ -55,6 +55,8 @@ last_response() |>
   resp_status_desc()
 
 
+gitcreds::gitcreds_set()
+
 request("https://api.github.com/user") |>
   req_auth_bearer_token(gitcreds::gitcreds_get()$password) |> 
   #req_dry_run() |>
@@ -88,6 +90,7 @@ request("https://api.github.com/orgs/sta323-sp25/repos") |>
 
 last_response() |> 
   resp_headers("link")
+
 
 ### Create a gist ----
 
