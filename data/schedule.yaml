@@ -199,6 +199,8 @@ schedule:
       link: https://httr2.r-lib.org/
     - text: httr - Best practices for API packages
       link: https://httr.r-lib.org/articles/api-packages.html
+    - text: GitHub API Docs
+      link: https://docs.github.com/en/rest?apiVersion=2022-11-28
   suppmat:
     - text: Requests
       link: https://requests.readthedocs.io/en/latest/
