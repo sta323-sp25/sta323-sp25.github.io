@@ -207,8 +207,20 @@ schedule:
 
 - week: 8
   day: 3
-  lecture: "Building APIs with R (plumber)"
+  lecture: "filesystems, Dennys & LQ scraping"
+  screencast:
   slides: Lec14
+  readings:
+    - text: Project-oriented workflow
+      link: https://rstats.wtf/project-oriented-workflow.html
+    - text: fs comparison
+      link: https://fs.r-lib.org/articles/function-comparisons.html
+  suppmat:
+
+- week: 8
+  day: 5
+  lecture: "Building APIs with R (plumber)"
+  slides: Lec15
   screencast:
   readings:
     - text: plumber documentation
@@ -216,17 +228,6 @@ schedule:
     - text: plumber webinar
       link: https://posit.co/resources/videos/expanding-r-horizons-integrating-r-with-plumber-apis/
 
-- week: 8
-  day: 5
-  lecture: "filesystems, Dennys & LQ scraping"
-  screencast:
-  slides: Lec15
-  readings:
-    - text: Project-oriented workflow
-      link: https://rstats.wtf/project-oriented-workflow.html
-    - text: fs comparison
-      link: https://fs.r-lib.org/articles/function-comparisons.html
-  suppmat:
 
 - week: 9
   day: 2
