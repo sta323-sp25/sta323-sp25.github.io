@@ -104,10 +104,8 @@ dir(path = "../../")
 Tilde (`~`) is a shortcut that expands to the name of your home directory on unix-like systems.
 
 ```{r}
-dir(path = "~/")
+dir(path = "~/Desktop/Sta323-Sp25/website/")
 ```
-
-If you append a user's login to `~`, it then refers to that user's home directory (e.g. `~cr173`).
 
 ## Why `~`?
 
@@ -164,21 +162,27 @@ Thus far we've dealt with mostly simple project organizational structures - all 
 
 `here` is a package that tries to simplify this process by identifying the root of your project for you using simple heuristics and then providing relative paths from that root directory to everything else in your project.
 
+::: {.small}
 ```{r}
 here::here()
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 here::here("data/")
 ```
+:::
 
 . . .
 
+::: {.small}
 ```{r}
 here::here("../../data/")
 ```
+:::
 
 
 ## Rules of `here::here()`
@@ -190,7 +194,7 @@ here::here("../../data/")
 >
 > - contains a file .here
 > 
-> - ***contains a file matching [.]Rproj$ with contents matching ^Version: in the first line***
+> - **contains a file matching [.]Rproj$ with contents matching ^Version: in the first line**
 > 
 > - contains a file DESCRIPTION with contents matching ^Package:
 > 
