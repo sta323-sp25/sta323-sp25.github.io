@@ -121,7 +121,7 @@ Endpoints are therefore just decorated anonymous R functions (the name/endpoint 
 
 <br/>
 
-Every endpoint must have (at least) one of the below annotations followed by a path.
+Every endpoint must have (at least) one of the following annotations and a path.
 
 :::: {.columns}
 ::: {.column width='33%'}

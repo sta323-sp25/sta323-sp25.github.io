@@ -1,5 +1,7 @@
 {
     "cSpell.words": [
         "Hadley's"
-    ]
+    ],
+    "quarto.cells.useReticulate": false,
+    "positron.reticulate.enabled": true
 }
