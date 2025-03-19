@@ -256,7 +256,7 @@ schedule:
 - week: 10
   day: 5
   lecture: "targets"
-  slides: Lec16
+  slides: 
   screencast:
   readings:
     - text: targets manual
