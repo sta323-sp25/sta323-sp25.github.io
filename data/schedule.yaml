@@ -255,13 +255,18 @@ schedule:
 
 - week: 10
   day: 5
-  lecture: "targets"
-  slides: 
+  lecture: "Shiny"
+  slides: Lec19
   screencast:
   readings:
-    - text: targets manual
-      link: https://books.ropensci.org/targets/
+    - text: Shiny Docs & Gallery
+      link: http://shiny.rstudio.com/
+    - text: Widget Gallery
+      link: http://shiny.rstudio.com/gallery/widget-gallery.html
+    - text: Mastering Shiny
+      link: https://mastering-shiny.org/
   suppmat:
+
 
 - week: 11
   day: 3
@@ -290,22 +295,10 @@ schedule:
     - text: Modern SQL Style Guide
       link: https://gist.github.com/mattmc3/38a85e6a4ca1093816c08d4815fbebfb
 
-- week: 12
-  day: 3
-  lecture: "Shiny"
-  slides: Lec19
-  screencast:
-  readings:
-    - text: Shiny Docs & Gallery
-      link: http://shiny.rstudio.com/
-    - text: Widget Gallery
-      link: http://shiny.rstudio.com/gallery/widget-gallery.html
-    - text: Mastering Shiny
-      link: https://mastering-shiny.org/
-  suppmat:
+
 
 - week: 12
-  day: 5
+  day: 3
   lecture: "bslib & dashboards"
   slides: Lec20
   screencast:
@@ -316,6 +309,16 @@ schedule:
       link: https://posit-conf-2023.github.io/shiny-r-dashboard/
     - text: Awesome Shiny Extensions
       link: https://github.com/nanxstats/awesome-shiny-extensions
+
+- week: 12
+  day: 5
+  lecture: "targets"
+  slides: 
+  screencast:
+  readings:
+    - text: targets manual
+      link: https://books.ropensci.org/targets/
+  suppmat:
 
 - week: 13
   day: 3
