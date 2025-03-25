@@ -287,7 +287,7 @@ schedule:
 - week: 11
   day: 5
   lecture: "DuckDB & SQL"
-  slides: Lec18
+  slides: Lec19
   screencast:
   readings:
     - text: DuckDB SQL Reference
