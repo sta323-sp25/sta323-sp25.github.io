@@ -1063,8 +1063,8 @@ Dr. Colin Rundel
 </div>
 
 </section>
-<section class="slide level2">
-
+<section id="sql" class="slide level2">
+<h2>SQL</h2>
 <div class="cell" data-layout-align="center">
 <style type="text/css">
 code.sql > span > a::after {
@@ -1085,9 +1085,6 @@ max-height: 520px !important;
 }
 </style>
 </div>
-</section>
-<section id="sql" class="slide level2">
-<h2>SQL</h2>
 <p>Structures Query Language is a special purpose language for interacting with (querying and modifying) indexed tabular data.</p>
 <ul>
 <li><p>ANSI Standard but with dialect divergence (MySql, Postgres, SQLite, etc.)</p></li>
@@ -1109,7 +1106,7 @@ max-height: 520px !important;
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href></a><span class="fu">library</span>(DBI)</span>
 <span id="cb1-2"><a href></a>(<span class="at">con =</span> <span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>&lt;duckdb_connection 976f0 driver=&lt;duckdb_driver dbdir=&#39;:memory:&#39; read_only=FALSE bigint=numeric&gt;&gt;</code></pre>
+<pre><code>&lt;duckdb_connection b2fe0 driver=&lt;duckdb_driver dbdir=&#39;:memory:&#39; read_only=FALSE bigint=numeric&gt;&gt;</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -1172,10 +1169,10 @@ max-height: 520px !important;
  4 JFK    SFO      24
  5 LGA    CLT      21
  6 EWR    ORD      18
- 7 LGA    BOS      16
- 8 EWR    SFO      16
- 9 EWR    LAX      16
-10 JFK    BOS      16
+ 7 JFK    BOS      16
+ 8 LGA    DCA      16
+ 9 LGA    BOS      16
+10 EWR    LAX      16
 # ℹ more rows</code></pre>
 </div>
 </div>
@@ -1904,7 +1901,7 @@ ORDER dept, diff;
 <span id="cb96-9"><a href></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
-  0.046   0.003   0.050 </code></pre>
+  0.046   0.003   0.049 </code></pre>
 </div>
 </div>
 </section></section>

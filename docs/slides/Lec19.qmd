@@ -32,6 +32,9 @@ knitr::opts_chunk$set(
 library(dplyr)
 ```
 
+
+## SQL
+
 ```{css}
 #| echo: false
 code.sql > span > a::after {
@@ -52,8 +55,6 @@ pre.shell > code > span > a::after {
   max-height: 520px !important;
 }
 ```
-
-## SQL
 
 Structures Query Language is a special purpose language for interacting with (querying and modifying) indexed tabular data. 
 
