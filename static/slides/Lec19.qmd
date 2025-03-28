@@ -1,0 +1,1081 @@
+---
+title: DuckDB & SQL
+subtitle: "Lecture 19"
+author: "Dr. Colin Rundel"
+footer: "Sta 323 - Spring 2025"
+format:
+  revealjs:
+    theme: slides.scss
+    transition: fade
+    slide-number: true
+    self-contained: true
+execute:
+  echo: true
+  warning: true
+engine: knitr
+---
+
+
+```{r setup}
+#| message: False
+#| warning: False
+#| include: False
+options(
+  width=70
+)
+
+knitr::opts_chunk$set(
+  fig.align = "center", fig.retina = 2, dpi = 150,
+  out.width = "100%", warning = TRUE
+)
+
+library(dplyr)
+```
+
+```{css}
+#| echo: false
+code.sql > span > a::after {
+  content: "D ";
+  color: #aaaaaa;
+}
+
+pre.shell > code > span > a::after {
+  content: "> ";
+  color: #aaaaaa;
+}
+```
+
+```{css}
+#| echo: false
+.reveal pre code {
+  text-wrap-mode: nowrap !important;
+  max-height: 520px !important;
+}
+```
+
+## SQL
+
+Structures Query Language is a special purpose language for interacting with (querying and modifying) indexed tabular data. 
+
+* ANSI Standard but with dialect divergence (MySql, Postgres, SQLite, etc.)
+
+* This functionality maps very closely (but not exactly) with the data manipulation verbs present in dplyr.
+
+* SQL is likely to be a foundational skill if you go into industry - learn it and put it on your CV
+
+
+## DuckDB
+
+> DuckDB is an open-source column-oriented relational database management system (RDBMS) originally developed by Mark Raasveldt and Hannes Mühleisen at the Centrum Wiskunde & Informatica (CWI) in the Netherlands and first released in 2019. The project has over 6 million downloads per month. It is designed to provide high performance on complex queries against large databases in embedded configuration, such as combining tables with hundreds of columns and billions of rows. Unlike other embedded databases (for example, SQLite) DuckDB is not focusing on transactional (OLTP) applications and instead is specialized for online analytical processing (OLAP) workloads.
+>
+> From [Wikipedia - DuckDB](https://en.wikipedia.org/wiki/DuckDB)
+
+
+## DuckDB & DBI
+
+DuckDB is a relational database just like SQLite and can be interacted with using DBI and the duckdb package.
+
+```{r}
+library(DBI)
+(con = dbConnect(duckdb::duckdb()))
+```
+
+. . .
+
+```{r}
+dbWriteTable(con, "flights", nycflights13::flights)
+dbListTables(con)
+```
+
+##
+
+::: {.small}
+```{r}
+dbGetQuery(con, "SELECT * FROM flights") |>
+  as_tibble()
+```
+:::
+
+##
+
+::: {.small}
+```{r}
+#| message: false
+library(dplyr)
+tbl(con, "flights") |>
+  filter(month == 10, day == 30) |>
+  count(origin, dest) |>
+  arrange(desc(n))
+```
+:::
+
+# DuckDB CLI
+
+## Connecting via CLI
+
+```{shell}
+#| eval: false
+duckdb employees.duckdb
+```
+```
+v1.1.2 f680b7d08f
+Enter ".help" for usage hints.
+```
+```sql
+.
+```
+
+
+
+## Table information
+
+Dot commands are expressions that begins with `.` and are specific to the DuckDB CLI, some examples include:
+
+```sql
+.tables
+```
+```
+## employees
+```
+
+<p/>
+
+```sql
+.schema employees
+```
+```
+## CREATE TABLE employees("name" VARCHAR, email VARCHAR, salary DOUBLE, dept VARCHAR);
+```
+
+<p/>
+
+```sql
+.indexes employees
+```
+
+```sql
+.maxrows 20
+.maxwidth 80
+```
+
+A full list of available dot commands can be found [here](https://duckdb.org/docs/api/cli/dot_commands.html) or listed via `.help` in the CLI.
+
+
+## SELECT Statements
+
+```sql
+SELECT * FROM employees;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┐
+## │  name   │       email       │ salary  │    dept    │
+## │ varchar │      varchar      │ double  │  varchar   │
+## ├─────────┼───────────────────┼─────────┼────────────┤
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │
+## └─────────┴───────────────────┴─────────┴────────────┘
+```
+
+
+## Output formats
+
+The format of duckdb's output (in the CLI) is controled via `.mode` -  the default is `duckbox`, see other possible [output formats](https://duckdb.org/docs/api/cli/output_formats.html). 
+
+:::: {.columns .xsmall}
+::: {.column width='50%'}
+```sql
+.mode csv
+SELECT * FROM employees;
+```
+```
+## name,email,salary,dept
+## Alice,alice@company.com,52000.0,Accounting
+## Bob,bob@company.com,40000.0,Accounting
+## Carol,carol@company.com,30000.0,Sales
+## Dave,dave@company.com,33000.0,Accounting
+## Eve,eve@company.com,44000.0,Sales
+## Frank,frank@comany.com,37000.0,Sales
+```
+:::
+
+::: {.column width='50%'}
+
+```sql
+.mode markdown
+SELECT * FROM employees;
+```
+```
+## | name  |       email       | salary  |    dept    |
+## |-------|-------------------|--------:|------------|
+## | Alice | alice@company.com | 52000.0 | Accounting |
+## | Bob   | bob@company.com   | 40000.0 | Accounting |
+## | Carol | carol@company.com | 30000.0 | Sales      |
+## | Dave  | dave@company.com  | 33000.0 | Accounting |
+## | Eve   | eve@company.com   | 44000.0 | Sales      |
+## | Frank | frank@comany.com  | 37000.0 | Sales      |
+```
+:::
+::::
+
+:::: {.columns .small}
+::: {.column width='50%'}
+```sql
+.mode json
+SELECT * FROM employees;
+```
+```
+## [{"name":"Alice","email":"alice@company.com","salary":52000.0,"dept":"Accounting"},
+## {"name":"Bob","email":"bob@company.com","salary":40000.0,"dept":"Accounting"},
+## {"name":"Carol","email":"carol@company.com","salary":30000.0,"dept":"Sales"},
+## {"name":"Dave","email":"dave@company.com","salary":33000.0,"dept":"Accounting"},
+## {"name":"Eve","email":"eve@company.com","salary":44000.0,"dept":"Sales"},
+## {"name":"Frank","email":"frank@comany.com","salary":37000.0,"dept":"Sales"}]
+```
+:::
+
+::: {.column width='50%'}
+```sql
+.mode insert
+SELECT * FROM employees;
+```
+```
+INSERT INTO "table"("name",email,salary,dept) VALUES('Alice','alice@company.com',52000.0,'Accounting');
+INSERT INTO "table"("name",email,salary,dept) VALUES('Bob','bob@company.com',40000.0,'Accounting');
+INSERT INTO "table"("name",email,salary,dept) VALUES('Carol','carol@company.com',30000.0,'Sales');
+INSERT INTO "table"("name",email,salary,dept) VALUES('Dave','dave@company.com',33000.0,'Accounting');
+INSERT INTO "table"("name",email,salary,dept) VALUES('Eve','eve@company.com',44000.0,'Sales');
+INSERT INTO "table"("name",email,salary,dept) VALUES('Frank','frank@comany.com',37000.0,'Sales');
+```
+:::
+::::
+
+
+# A brief tour of SQL
+
+
+## select() using SELECT
+
+We can subset for certain columns (and rename them) using `SELECT`
+
+```sql
+SELECT name AS first_name, salary FROM employees;
+```
+```
+## ┌────────────┬─────────┐
+## │ first_name │ salary  │
+## │  varchar   │ double  │
+## ├────────────┼─────────┤
+## │ Alice      │ 52000.0 │
+## │ Bob        │ 40000.0 │
+## │ Carol      │ 30000.0 │
+## │ Dave       │ 33000.0 │
+## │ Eve        │ 44000.0 │
+## │ Frank      │ 37000.0 │
+## └────────────┴─────────┘
+```
+
+
+## arrange() using ORDER BY
+
+
+We can sort our results by adding `ORDER BY` to our `SELECT` statement and reverse the ordering by include `DESC`.
+
+:::: {.columns .xsmall}
+::: {.column width='50%'}
+```sql
+SELECT name AS first_name, salary FROM employees 
+  ORDER BY salary;
+```
+```
+## ┌────────────┬─────────┐
+## │ first_name │ salary  │
+## │  varchar   │ double  │
+## ├────────────┼─────────┤
+## │ Carol      │ 30000.0 │
+## │ Dave       │ 33000.0 │
+## │ Frank      │ 37000.0 │
+## │ Bob        │ 40000.0 │
+## │ Eve        │ 44000.0 │
+## │ Alice      │ 52000.0 │
+## └────────────┴─────────┘
+```
+:::
+
+::: {.column width='50%'}
+```sql
+SELECT name AS first_name, salary FROM employees 
+  ORDER BY salary DESC;
+```
+```
+## ┌────────────┬─────────┐
+## │ first_name │ salary  │
+## │  varchar   │ double  │
+## ├────────────┼─────────┤
+## │ Alice      │ 52000.0 │
+## │ Eve        │ 44000.0 │
+## │ Bob        │ 40000.0 │
+## │ Frank      │ 37000.0 │
+## │ Dave       │ 33000.0 │
+## │ Carol      │ 30000.0 │
+## └────────────┴─────────┘
+```
+:::
+::::
+
+
+## filter() using WHERE
+
+We can filter rows using a `WHERE` clause
+
+::: {.small}
+```sql
+SELECT * FROM employees WHERE salary < 40000;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┐
+## │  name   │       email       │ salary  │    dept    │
+## │ varchar │      varchar      │ double  │  varchar   │
+## ├─────────┼───────────────────┼─────────┼────────────┤
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │
+## └─────────┴───────────────────┴─────────┴────────────┘
+```
+
+```sql
+SELECT * FROM employees WHERE salary < 40000 AND dept = 'Sales';
+```
+```
+## ┌─────────┬───────────────────┬─────────┬─────────┐
+## │  name   │       email       │ salary  │  dept   │
+## │ varchar │      varchar      │ double  │ varchar │
+## ├─────────┼───────────────────┼─────────┼─────────┤
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales   │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales   │
+## └─────────┴───────────────────┴─────────┴─────────┘
+```
+:::
+
+## group_by() and summarize() via GROUP BY
+
+We can create groups for the purpose of summarizing using `GROUP BY`. 
+
+::: {.small}
+```sql
+SELECT dept, COUNT(*) AS n FROM employees GROUP BY dept;
+```
+```
+## ┌────────────┬───────┐
+## │    dept    │   n   │
+## │  varchar   │ int64 │
+## ├────────────┼───────┤
+## │ Sales      │     3 │
+## │ Accounting │     3 │
+## └────────────┴───────┘
+```
+:::
+
+
+## head() using LIMIT
+
+We can limit the number of results we get by using `LIMIT` 
+
+::: {.small}
+```sql
+SELECT * FROM employees LIMIT 3;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┐
+## │  name   │       email       │ salary  │    dept    │
+## │ varchar │      varchar      │ double  │  varchar   │
+## ├─────────┼───────────────────┼─────────┼────────────┤
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │
+## └─────────┴───────────────────┴─────────┴────────────┘
+```
+:::
+
+
+
+## Exercise 1
+
+Using duckdb calculate the following quantities for `employees.duckdb`,
+
+1. The total costs in payroll for this company
+
+2. The average salary within each department
+
+::: {.aside}
+[DuckDB's aggregation functions](https://duckdb.org/docs/sql/functions/aggregates)
+:::
+
+
+## Reading from CSV files
+
+DuckDB has a neat trick in that it can treat files as tables (for supported formats), this lets you query them without having to explicitly read them into the database and create a table.
+
+We can also make this explicit by using the `read_csv()` function, which is useful if we need to use custom options (e.g. specify a different delimeter)
+
+:::: {.columns .xsmall}
+::: {.column width='50%'}
+```sql
+SELECT * FROM 'phone.csv';
+```
+```
+## ┌─────────┬──────────────┐
+## │  name   │    phone     │
+## │ varchar │   varchar    │
+## ├─────────┼──────────────┤
+## │ Bob     │ 919 555-1111 │
+## │ Carol   │ 919 555-2222 │
+## │ Eve     │ 919 555-3333 │
+## │ Frank   │ 919 555-4444 │
+## └─────────┴──────────────┘
+```
+:::
+
+::: {.column width='50%'}
+```sql
+SELECT * FROM read_csv('phone.csv', delim = ',');
+```
+```
+## ┌─────────┬──────────────┐
+## │  name   │    phone     │
+## │ varchar │   varchar    │
+## ├─────────┼──────────────┤
+## │ Bob     │ 919 555-1111 │
+## │ Carol   │ 919 555-2222 │
+## │ Eve     │ 919 555-3333 │
+## │ Frank   │ 919 555-4444 │
+## └─────────┴──────────────┘
+```
+:::
+::::
+
+## Tables from CSV
+
+If we wanted to explicitly create a table from the CSV file this is also possible, 
+
+::: {.small}
+
+```sql
+.tables
+```
+```
+## employees
+```
+```sql
+CREATE TABLE phone AS
+  SELECT * FROM 'phone.csv';
+.tables
+```
+```
+## employees  phone
+```
+```sql
+SELECT * FROM phone;
+```
+```
+## ┌─────────┬──────────────┐
+## │  name   │    phone     │
+## │ varchar │   varchar    │
+## ├─────────┼──────────────┤
+## │ Bob     │ 919 555-1111 │
+## │ Carol   │ 919 555-2222 │
+## │ Eve     │ 919 555-3333 │
+## │ Frank   │ 919 555-4444 │
+## └─────────┴──────────────┘
+```
+:::
+
+## Views from CSV
+
+It is also possible to create a view from a file - this acts like a table but the data is not copied from the file
+
+::: {.small}
+```sql
+.tables
+```
+```
+## employees
+```
+```sql
+CREATE VIEW phone_view AS
+  SELECT * FROM 'phone.csv';
+.tables
+```
+```
+## employees  phone  phone_view
+```
+```sql
+SELECT * FROM phone_view;
+```
+```
+## ┌─────────┬──────────────┐
+## │  name   │    phone     │
+## │ varchar │   varchar    │
+## ├─────────┼──────────────┤
+## │ Bob     │ 919 555-1111 │
+## │ Carol   │ 919 555-2222 │
+## │ Eve     │ 919 555-3333 │
+## │ Frank   │ 919 555-4444 │
+## └─────────┴──────────────┘
+```
+:::
+
+## Deleting tables and views
+
+Tables and views can be deleted using `DROP`
+
+```sql
+DROP TABLE phone;
+DROP VIEW phone_view;
+```
+
+
+## Joins - Default
+
+If not otherwise specified the default join in DuckDB will be an inner join.
+
+::: {.small}
+```sql
+SELECT * FROM employees JOIN phone;
+```
+```
+## Parser Error: syntax error at or near ";"
+## LINE 1: SELECT * FROM employees JOIN phone;
+```
+:::
+
+Note that an `ON` or `USING` clause is required unless using `NATURAL`.
+
+. . .
+
+
+::: {.small}
+```sql
+SELECT * FROM employees NATURAL JOIN phone;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+:::
+
+
+
+## Inner Join - Explicit
+
+::: {.xsmall}
+```sql
+SELECT * FROM employees JOIN phone ON employees.name = phone.name;
+```
+```
+##┌─────────┬───────────────────┬─────────┬────────────┬─────────┬──────────────┐
+##│  name   │       email       │ salary  │    dept    │  name   │    phone     │
+##│ varchar │      varchar      │ double  │  varchar   │ varchar │   varchar    │
+##├─────────┼───────────────────┼─────────┼────────────┼─────────┼──────────────┤
+##│ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ Bob     │ 919 555-1111 │
+##│ Carol   │ carol@company.com │ 30000.0 │ Sales      │ Carol   │ 919 555-2222 │
+##│ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ Eve     │ 919 555-3333 │
+##│ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ Frank   │ 919 555-4444 │
+##└─────────┴───────────────────┴─────────┴────────────┴─────────┴──────────────┘```
+```
+:::
+
+. . .
+
+::: {.small}
+to avoid the duplicate `name` column we can specify `USING` instead of `ON`
+:::
+
+::: {.xsmall}
+```sql
+SELECT * FROM employees JOIN phone USING(name);
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+:::
+
+::: {.aside}
+As a rule, the `USING` (or `NATURAL`) keyword is used if the column names match between tables, otherwise `ON` is needed.
+:::
+
+## Left Join - Natural
+
+::: {.small}
+```sql
+SELECT * FROM employees NATURAL LEFT JOIN phone;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │              │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │              │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+:::
+
+## Left Join - Explicit
+
+::: {.xsmall}
+```sql
+SELECT * FROM employees LEFT JOIN phone ON employees.name = phone.name;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬─────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │  name   │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │ varchar │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼─────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ Bob     │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ Carol   │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ Eve     │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ Frank   │ 919 555-4444 │
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │         │              │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │         │              │
+## └─────────┴───────────────────┴─────────┴────────────┴─────────┴──────────────┘
+```
+:::
+
+. . .
+
+::: {.small}
+duplicate `name` column can be avoided by more restrictive `SELECT`,
+:::
+
+::: {.xsmall}
+```sql
+SELECT employees.*, phone FROM employees LEFT JOIN phone ON employees.name = phone.name;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │              │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │              │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+:::
+
+
+
+
+## Other Joins
+
+As you would expect all other standard joins are supported including `RIGHT JOIN`, `FULL JOIN`, `CROSS JOIN`, `SEMI JOIN`, `ANTI JOIN`, etc.
+
+::: {.xsmall}
+```sql
+SELECT employees.*, phone FROM employees NATURAL FULL JOIN phone;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │              │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │              │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+```sql
+SELECT employees.*, phone FROM employees NATURAL RIGHT JOIN phone;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+:::
+
+## Subqueries
+
+We can nest tables within tables for the purpose of queries.
+
+::: {.xsmall}
+```sql
+SELECT * FROM (
+  SELECT * FROM employees NATURAL LEFT JOIN phone
+) combined WHERE phone IS NULL;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬─────────┐
+## │  name   │       email       │ salary  │    dept    │  phone  │
+## │ varchar │      varchar      │ double  │  varchar   │ varchar │
+## ├─────────┼───────────────────┼─────────┼────────────┼─────────┤
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │         │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │         │
+## └─────────┴───────────────────┴─────────┴────────────┴─────────┘
+```
+
+```sql
+SELECT * FROM (
+  SELECT * FROM employees NATURAL LEFT JOIN phone
+) combined WHERE phone IS NOT NULL;
+```
+```
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────────┐
+## │  name   │       email       │ salary  │    dept    │    phone     │
+## │ varchar │      varchar      │ double  │  varchar   │   varchar    │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────────┤
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 919 555-1111 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │ 919 555-2222 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │ 919 555-3333 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │ 919 555-4444 │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────────┘
+```
+:::
+
+
+## Exercise 2
+
+Lets try to create a table that has a new column - `abv_avg` which contains how much more (or less) than the average, for their department, each person is paid.
+
+Hint - This will require joining a subquery.
+
+<!--
+```sql
+SELECT *, round(salary-avg,2) AS diff 
+FROM employees
+NATURAL JOIN  (
+  SELECT dept, round(avg(salary),2) AS avg FROM employees GROUP BY dept
+) dept_avg
+ORDER dept, diff;
+## ┌─────────┬───────────────────┬─────────┬────────────┬──────────┬─────────┐
+## │  name   │       email       │ salary  │    dept    │   avg    │  diff   │
+## │ varchar │      varchar      │ double  │  varchar   │  double  │ double  │
+## ├─────────┼───────────────────┼─────────┼────────────┼──────────┼─────────┤
+## │ Alice   │ alice@company.com │ 52000.0 │ Accounting │ 41666.67 │ 10333.0 │
+## │ Bob     │ bob@company.com   │ 40000.0 │ Accounting │ 41666.67 │ -1667.0 │
+## │ Carol   │ carol@company.com │ 30000.0 │ Sales      │  37000.0 │ -7000.0 │
+## │ Dave    │ dave@company.com  │ 33000.0 │ Accounting │ 41666.67 │ -8667.0 │
+## │ Eve     │ eve@company.com   │ 44000.0 │ Sales      │  37000.0 │  7000.0 │
+## │ Frank   │ frank@comany.com  │ 37000.0 │ Sales      │  37000.0 │     0.0 │
+## └─────────┴───────────────────┴─────────┴────────────┴──────────┴─────────┘
+```
+-->
+
+
+# Query plan
+
+## Setup
+
+To give us a bit more variety (and data), we have created another SQLite database `flights.sqlite` that contains both `nycflights13::flights` and `nycflights13::planes`, the latter of which has details on the characteristics of the planes in the dataset as identified by their tail numbers.
+
+::: {.small}
+```{r}
+#| eval: False
+db = DBI::dbConnect(duckdb::duckdb(), "flights.duckdb")
+dplyr::copy_to(db, nycflights13::flights, name = "flights", temporary = FALSE, overwrite = TRUE)
+dplyr::copy_to(db, nycflights13::planes, name = "planes", temporary = FALSE, overwrite = TRUE)
+DBI::dbDisconnect(db)
+```
+:::
+
+. . .
+
+All of the following code will be run in the DuckDB command line interface, make sure you've created the database and copied both the flights and planes tables into the db or use the version provided in the `exercises/` repo.
+
+
+## Opening `flights.sqlite`
+
+The database can then be opened from the terminal tab using,
+```{shell}
+#| eval: false
+duckdb flights.duckdb
+```
+
+As before set a couple of configuration options so that our output is readable, we also include `.timer on` so that we get timings for our queries.
+
+```sql
+.maxrows 20
+.maxwidth 80
+.timer on
+```
+
+## `flights`
+
+::: {.small}
+```sql
+SELECT * FROM flights LIMIT 10;
+```
+```
+## ┌───────┬───────┬───────┬───┬──────────┬────────┬────────┬─────────────────────┐
+## │ year  │ month │  day  │ … │ distance │  hour  │ minute │      time_hour      │
+## │ int32 │ int32 │ int32 │   │  double  │ double │ double │      timestamp      │
+## ├───────┼───────┼───────┼───┼──────────┼────────┼────────┼─────────────────────┤
+## │  2013 │     1 │     1 │ … │   1400.0 │    5.0 │   15.0 │ 2013-01-01 10:00:00 │
+## │  2013 │     1 │     1 │ … │   1416.0 │    5.0 │   29.0 │ 2013-01-01 10:00:00 │
+## │  2013 │     1 │     1 │ … │   1089.0 │    5.0 │   40.0 │ 2013-01-01 10:00:00 │
+## │  2013 │     1 │     1 │ … │   1576.0 │    5.0 │   45.0 │ 2013-01-01 10:00:00 │
+## │  2013 │     1 │     1 │ … │    762.0 │    6.0 │    0.0 │ 2013-01-01 11:00:00 │
+## │  2013 │     1 │     1 │ … │    719.0 │    5.0 │   58.0 │ 2013-01-01 10:00:00 │
+## │  2013 │     1 │     1 │ … │   1065.0 │    6.0 │    0.0 │ 2013-01-01 11:00:00 │
+## │  2013 │     1 │     1 │ … │    229.0 │    6.0 │    0.0 │ 2013-01-01 11:00:00 │
+## │  2013 │     1 │     1 │ … │    944.0 │    6.0 │    0.0 │ 2013-01-01 11:00:00 │
+## │  2013 │     1 │     1 │ … │    733.0 │    6.0 │    0.0 │ 2013-01-01 11:00:00 │
+## ├───────┴───────┴───────┴───┴──────────┴────────┴────────┴─────────────────────┤
+## │ 10 rows                                                 19 columns (7 shown) │
+## └──────────────────────────────────────────────────────────────────────────────┘
+## Run Time (s): real 0.020 user 0.000784 sys 0.002284
+```
+:::
+
+## `planes`
+
+::: {.small}
+```sql
+SELECT * FROM planes LIMIT 10;
+```
+```
+## ┌─────────┬───────┬──────────────────────┬───┬───────┬───────┬───────────┐
+## │ tailnum │ year  │         type         │ … │ seats │ speed │  engine   │
+## │ varchar │ int32 │       varchar        │   │ int32 │ int32 │  varchar  │
+## ├─────────┼───────┼──────────────────────┼───┼───────┼───────┼───────────┤
+## │ N10156  │  2004 │ Fixed wing multi e…  │ … │    55 │       │ Turbo-fan │
+## │ N102UW  │  1998 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N103US  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N104UW  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N10575  │  2002 │ Fixed wing multi e…  │ … │    55 │       │ Turbo-fan │
+## │ N105UW  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N107US  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N108UW  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N109UW  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## │ N110UW  │  1999 │ Fixed wing multi e…  │ … │   182 │       │ Turbo-fan │
+## ├─────────┴───────┴──────────────────────┴───┴───────┴───────┴───────────┤
+## │ 10 rows                                            9 columns (6 shown) │
+## └────────────────────────────────────────────────────────────────────────┘
+## Run Time (s): real 0.003 user 0.000819 sys 0.000018
+```
+:::
+
+
+## Exercise 3
+
+Write a query that determines the total number of seats available on all of the planes that flew out of New York in 2013.
+
+
+## Solution?
+
+Does the following seem correct?
+
+::: {.small}
+```sql
+SELECT sum(seats) FROM flights NATURAL LEFT JOIN planes;
+```
+```
+## ┌────────────┐
+## │ sum(seats) │
+## │   int128   │
+## ├────────────┤
+## │     614366 │
+## └────────────┘
+## Run Time (s): real 0.012 user 0.016061 sys 0.002386
+```
+:::
+
+. . .
+
+<br/><br/>
+
+::: {.center .large}
+Why?
+:::
+
+
+## Correct solution
+
+**Join and select**:
+
+::: {.small}
+```sql
+SELECT sum(seats) FROM flights LEFT JOIN planes USING (tailnum);
+```
+```
+## ┌────────────┐
+## │ sum(seats) │
+## │   int128   │
+## ├────────────┤
+## │   38851317 │
+## └────────────┘
+## Run Time (s): real 0.005 user 0.010150 sys 0.000291
+```
+:::
+
+
+
+## `EXPLAIN`
+
+::: {.xsmall}
+```sql
+EXPLAIN SELECT sum(seats) FROM flights LEFT JOIN planes USING (tailnum);
+```
+```
+## ┌─────────────────────────────┐
+## │┌───────────────────────────┐│
+## ││       Physical Plan       ││
+## │└───────────────────────────┘│
+## └─────────────────────────────┘
+## ┌───────────────────────────┐
+## │    UNGROUPED_AGGREGATE    │
+## │    ────────────────────   │
+## │    Aggregates: sum(#0)    │
+## └─────────────┬─────────────┘
+## ┌─────────────┴─────────────┐
+## │         PROJECTION        │
+## │    ────────────────────   │
+## │           seats           │
+## │                           │
+## │        ~336776 Rows       │
+## └─────────────┬─────────────┘
+## ┌─────────────┴─────────────┐
+## │         HASH_JOIN         │
+## │    ────────────────────   │
+## │      Join Type: LEFT      │
+## │                           │
+## │        Conditions:        ├──────────────┐
+## │     tailnum = tailnum     │              │
+## │                           │              │
+## │        ~336776 Rows       │              │
+## └─────────────┬─────────────┘              │
+## ┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+## │         SEQ_SCAN          ││         SEQ_SCAN          │
+## │    ────────────────────   ││    ────────────────────   │
+## │          flights          ││           planes          │
+## │                           ││                           │
+## │    Projections: tailnum   ││        Projections:       │
+## │                           ││          tailnum          │
+## │                           ││           seats           │
+## │                           ││                           │
+## │        ~336776 Rows       ││         ~3322 Rows        │
+## └───────────────────────────┘└───────────────────────────┘
+## Run Time (s): real 0.001 user 0.000547 sys 0.000000
+```
+:::
+
+## `EXPLAIN ANALYZE`
+
+::: {.xsmall}
+```sql
+EXPLAIN ANALYZE SELECT sum(seats) FROM flights LEFT JOIN planes USING (tailnum);
+```
+```
+## ┌─────────────────────────────────────┐
+## │┌───────────────────────────────────┐│
+## ││    Query Profiling Information    ││
+## │└───────────────────────────────────┘│
+## └─────────────────────────────────────┘
+## EXPLAIN ANALYZE SELECT sum(seats) FROM flights LEFT JOIN planes USING (tailnum);
+## ┌────────────────────────────────────────────────┐
+## │┌──────────────────────────────────────────────┐│
+## ││              Total Time: 0.0045s             ││
+## │└──────────────────────────────────────────────┘│
+## └────────────────────────────────────────────────┘
+## ┌───────────────────────────┐
+## │           QUERY           │
+## └─────────────┬─────────────┘
+## ┌─────────────┴─────────────┐
+## │      EXPLAIN_ANALYZE      │
+## │    ────────────────────   │
+## │           0 Rows          │
+## │          (0.00s)          │
+## └─────────────┬─────────────┘
+## ┌─────────────┴─────────────┐
+## │    UNGROUPED_AGGREGATE    │
+## │    ────────────────────   │
+## │    Aggregates: sum(#0)    │
+## │                           │
+## │           1 Rows          │
+## │          (0.00s)          │
+## └─────────────┬─────────────┘
+## ┌─────────────┴─────────────┐
+## │         PROJECTION        │
+## │    ────────────────────   │
+## │           seats           │
+## │                           │
+## │        336776 Rows        │
+## │          (0.00s)          │
+## └─────────────┬─────────────┘
+## ┌─────────────┴─────────────┐
+## │         HASH_JOIN         │
+## │    ────────────────────   │
+## │      Join Type: LEFT      │
+## │                           │
+## │        Conditions:        ├──────────────┐
+## │     tailnum = tailnum     │              │
+## │                           │              │
+## │        336776 Rows        │              │
+## │          (0.01s)          │              │
+## └─────────────┬─────────────┘              │
+## ┌─────────────┴─────────────┐┌─────────────┴─────────────┐
+## │         TABLE_SCAN        ││         TABLE_SCAN        │
+## │    ────────────────────   ││    ────────────────────   │
+## │          flights          ││           planes          │
+## │                           ││                           │
+## │    Projections: tailnum   ││        Projections:       │
+## │                           ││          tailnum          │
+## │                           ││           seats           │
+## │                           ││                           │
+## │        336776 Rows        ││         3322 Rows         │
+## │          (0.00s)          ││          (0.00s)          │
+## └───────────────────────────┘└───────────────────────────┘
+## Run Time (s): real 0.004 user 0.011027 sys 0.000200
+```
+:::
+
+## dplyr
+
+```{r}
+library(dplyr)
+flights = nycflights13::flights
+planes = nycflights13::planes
+
+system.time({
+  flights |>
+    left_join(nycflights13::planes, by = c("tailnum" = "tailnum")) |>
+    summarise(total_seats = sum(seats, na.rm = TRUE))
+})
+```
+
+# NYC Taxi Demo
