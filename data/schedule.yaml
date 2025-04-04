@@ -312,16 +312,6 @@ schedule:
 
 - week: 12
   day: 5
-  lecture: "targets"
-  slides: 
-  screencast:
-  readings:
-    - text: targets manual
-      link: https://books.ropensci.org/targets/
-  suppmat:
-
-- week: 13
-  day: 3
   lecture: "Profiling & Parallelization"
   slides: Lec21
   screencast:
@@ -333,7 +323,7 @@ schedule:
   suppmat:
 
 - week: 13
-  day: 5
+  day: 3
   lecture: "Spatial data"
   slides: Lec22
   screencast:
@@ -342,8 +332,8 @@ schedule:
       link: https://cran.r-project.org/web/packages/sf/vignettes/
   suppmat:
 
-- week: 14
-  day: 3
+- week: 13
+  day: 5
   lecture: "Tidy Models"
   screencast:
   slides: Lec23
@@ -353,14 +343,14 @@ schedule:
   suppmat:
 
 - week: 14
-  day: 5
+  day: 3
   lecture: "More Tidy Models"
   screencast:
   slides: Lec24
   suppmat:
 
-- week: 15
-  day: 3
+- week: 14
+  day: 5
   lecture: "R Packages"
   slides: Lec25
   screencast:
@@ -373,6 +363,14 @@ schedule:
       link: https://roxygen2.r-lib.org/
     - text: testthat
       link: https://testthat.r-lib.org/
+  suppmat:
+
+- week: 15
+  day: 3
+  lecture: "Rcpp"
+  slides: 
+  screencast:
+  readings:
   suppmat:
 
 - week: 16
