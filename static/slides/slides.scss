@@ -105,3 +105,9 @@ blockquote {
 blockquote > p {
   margin-bottom: 0.5em !important;
 }
+
+
+.reveal pre code {
+  text-wrap-mode: nowrap !important;
+  max-height: 520px !important;
+}
