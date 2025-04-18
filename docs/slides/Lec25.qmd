@@ -159,7 +159,7 @@ devtools::install("diffmatchpatch_0.1.0.tar.gz")
 
 The Comprehensive R Archive Network which is the central repository of R packages.
 
-* Maintained by the R Foundation and run by a team of volunteers, ~20k packages 
+* Maintained by the R Foundation and run by a team of volunteers, ~23k packages 
 
 * Retains all current versions of released packages as well as archives of previous versions
 
@@ -287,6 +287,19 @@ This is an immensely useful package for automating all kinds of routine (and ted
 
 # Live demo <br/> Building a Package
 
+## Start your package
+
+Rather than having to remember all of the necessary pieces and their format, `usethis` can help you bootstrap your package development process.
+
+```{r}
+#| eval: false
+usethis::create_package()
+```
+
+
+::: {.aside}
+`available::available()` can be used to check if your proposed packagename is available.
+:::
 
 ## Choosing a license
 
@@ -297,9 +310,6 @@ There are many resources available to help you choose a license, including:
 ::: {.center .large}
 <https://choosealicense.com/>
 :::
-
-
-# Package documentation
 
 ## Documentation
 
