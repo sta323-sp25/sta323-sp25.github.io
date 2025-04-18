@@ -367,7 +367,7 @@ schedule:
 
 - week: 15
   day: 3
-  lecture: "Rcpp"
+  lecture: "Project Session"
   slides: 
   screencast:
   readings:
